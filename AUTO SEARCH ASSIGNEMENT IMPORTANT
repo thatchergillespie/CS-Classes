@@ -1,0 +1,124 @@
+Computer Science 1 : Java Programming
+Dr. David Cline
+Program: Automobile Search
+In this program you will create a search utility that will allow the user to search an automobile database
+stored in a text file. The attributes stored in the file will be the make, model, year, mileage and price of
+each automobile, and your program will be able to search on any of these atrributes.
+Things you will learn
+• Robustly parsing simple text files
+• Defining your own objects and using them in a program
+• Handling multiple input commands
+Specification
+Your program must use a class called Automobile that includes private variables for make, model, year,
+and price:
+private String make;
+private String model;
+private int year;
+private int mileage;
+private double price;
+Your Automobile class must have the following methods
+Appropriate constructors (such as one that takes 5 parameters)
+Getters and setter for the variables
+toString
+You should also have another class called AutoSearch that implements most of the functionality of the
+program. This class would include the main method, logic to determine all of the commands, a method
+to load a database, and methods to respond to each of the user commands.
+Operation
+When your program starts, it should print the program title and your name, and then go into
+"command" mode, which allows the user to type in various commands and get results from the system.
+The commands that your system must process are as follows:
+1. quit
+Causes the program to exit.
+2. help
+Causes the program to print a list of commands accepted by the system.
+3. load [filename]
+Causes the program to load a automobile database specified in the file [filename]. If a database
+is currently loaded, the program should discarded it and replace it with the new one.
+4. display all
+Prints all of the cars in ithe database to the console.
+5. make = [make]
+Prints all cars in the database with a particular make, such as Chevrolet.
+6. model = [model]
+This command prints all automobiles with a specific model name, such as Prism
+7. year range [low] [high]
+Prints all cars with years between [low] and [high], inclusive.
+8. mileage range [low] [high]
+Prints all cars with mileage between [low] and [high], inclusive.
+9. price range [low] [high]
+Prints all cars in with a price between [low] and [high] inclusive.
+Note that while there are quite a few commands, each command type is easy to detect and interpret,
+since it starts with a specific keyword and follows a rigid structure.
+When displayed to the user, the automobile entries must be printed in aligned columns, with a header
+specifying the different attributes. For example:
+Make Model Year Mileage Price
+Chevrolet Prism 2001 125000 $ 4000.00
+Chevrolet Malibu 2002 65000 $ 14000.00
+Database file format
+A database file for this assignment will be a text file with one automobile specified on each line of the
+file. The fields for an automobile will be make, model, year, price, in that order. The fields will be
+comma separated, with some number of spaces or tabs between them. An example database file is
+shown below:
+Chevrolet, Prism, 2001, 125000, 4000.0
+Chevrolet, Malibu, 2002, 65000, 14000.0
+Honda, Civic, 2013, 2000, 22000.0
+Honda, Odyssey, 2010, 5028, 8000.0
+Lamborgini, Diablo, 2014, 66, 225000.0
+Toyota, Rav4, 2008, 90000, 12500.0
+Ford, F150, 2005, 80000, 11250.0
+Program defensively. Your program must be able to handle the case where there are blank lines at the
+end of the file.
+Example Operation
+The example below shows how your AutoSearch program should work. Things typed by the user are
+shown in bold:
+java AutoSearch
+Automobile Search program by <student name>
+% load cars.txt
+loaded
+% make = Chevrolet
+Make Model Year Mileage Price
+Chevrolet Prism 2001 125000 $ 4000.00
+Chevrolet Malibu 2002 65000 $ 14000.00
+% help
+Accepted commands:
+quit
+help
+load [filename]
+display all
+make = [make]
+model = [model]
+year range [low] [high]
+price range [low] [high]
+% price range 100000.0 400000.0
+Make Model Year Mileage Price
+Lamborgini Diablo 2014 66 $225000.00
+% year range 2013 2013
+Make Model Year Mileage Price
+Honda Civic 2013 2000 $ 22000.00
+% quit
+Directions
+1. Implement the AutoSearch program as described above.
+2. (Required) Use the classes Automobile.java and AutoSearch.java
+3. Make sure that your program prints your name when it begins.
+4. Make sure to put the proper block comment at the top of your main file, including your name
+and section number, etc.
+5. Make sure that your program follows the class coding standards for indentation, variable
+naming, etc. Part of your grade will be based on this.
+6. Make sure that your program can handle good and bad input files, and good and bad user
+inputs, without crashing.
+7. Compile and test your program on CSX.
+8. Turn in your program using handin. STOP: Does you program print your name when it begins,
+and does it follow the class coding guidelines? Once you have transferred your program to
+CSX, open a remote connection and issue a command such as
+handin cs1113 program7 AutoSearch.java Automobile.java
+Suggestions
+• A good strategy for the program would be to have a main loop that gets a line of input from the
+user, tokenizes the line, and then calls a method based on the first token of the input. For
+example, if the first token is "year", then your program might call a method named
+"printYearRange", passing in the list of tokens.
+• Note also that this program is quite similar in many ways to MemCalc and StudentSort. Think
+about how you solved the problems related to those programs. You may be able to apply some
+similar solutions for this program.
+• Store the database in memory as an ArrayList<Automobile>
+• Note that all of the searching commands are very similar to the "display all" command. Write a
+method called displayAllAutos first, and then copy this method and modify it for each of the
+search commands.
